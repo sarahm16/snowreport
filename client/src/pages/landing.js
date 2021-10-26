@@ -49,21 +49,38 @@ function Landing() {
                     body = body.concat(`${location.name}    `).concat(`${location.zipcode     }`).concat(`<image src="https://forecast.weather.gov/meteograms/Plotter.php?lat=${location.latlong[0]}&lon=${location.latlong[1]}&wfo=OTX&zcode=WAZ036&gset=18&gdiff=8&unit=0&tinfo=PY8&ahour=0&pcmd=11011111111110000000000000000000000000000000000000000000000&lg=en&indu=1!1!1!&dd=&bw=&hrspan=48&pqpfhr=6&psnwhr=6">`)
                     .concat('<br><hr>')
                 })
-                console.log(body)
+                //console.log(body)
 
-                let htmlDoc = {
-                    header: `<!DOCTYPE html>
-                    <html>
-                    <head>
-                        <title>Page Title</title>
-                    </head>
-                    <body>`,
-                    body: body,
-                    footer: `</body></html>`
-                }
+                const encodedToken = Buffer.from(`${process.env.REACT_APP_ANVIL_KEY}:`, 'ascii').toString('base64')
 
-                axios.post('/api/locations/generate', htmlDoc)
+                var data = {
+                    title: 'Weather Forecast',
+                    data: {
+                      html: body
+                    }
+                  }
 
+                data = JSON.stringify(data)
+
+                var config = {
+                    method: 'post',
+                    url: 'https://my-tb-cors.herokuapp.com/https://app.useanvil.com/api/v1/generate-pdf',
+                    headers: {
+                        Authorization: `Basic ${encodedToken}`,
+                        "Content-Type": "application/json"
+                    },
+                    data: data
+                  };
+
+                //console.log(JSON.stringify(body))
+
+                axios(config)
+                .then(function (response) {
+                    console.log(JSON.stringify(response.data));
+                })
+                .catch(function (error) {
+                console.log(error);
+                });
             })
 
         
