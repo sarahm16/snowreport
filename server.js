@@ -11,6 +11,12 @@ const locations = require('./routes/api/locations');
 const app = express();
 app.use(compression());
 
+app.use(express.urlencoded({ 
+    extended: false 
+}))
+
+app.use(express.json())
+
 mongoose
   .connect(
     process.env.newDB_URI || 
@@ -20,11 +26,6 @@ mongoose
   )
   .then(() => console.log("MongoDB successfully connected"))
   .catch(err => console.log(err));
-
-// app.use(favicon(__dirname + 'client/build/favicon.ico'));
-
-// the __dirname is the current directory from where the script is running
-// app.use(express.static(__dirname));
 
 if(process.env.NODE_ENV === "production")
 {

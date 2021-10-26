@@ -1,7 +1,13 @@
 const Location = require('../../models/Location')
 const express = require("express");
 const router = express.Router();
-var fs = require('fs')
+
+const fs = require('fs');
+
+router.post('/add', (req, res) => {
+    console.log(req.body)
+    Location.create(req.body)
+})
 
 router.get('/get', (req,res) => {
     //console.log(res)
@@ -12,8 +18,22 @@ router.get('/get', (req,res) => {
     // })
 
     Location.find()
-        .then(res => console.log(res))
+        .then(locations => res.json(locations) )
 
+})
+
+router.post('/generate', (req, res) => {
+    let { header, body, footer } = req.body
+    const html = `${header} ${body} ${footer}`
+    fs.writeFile('test.html', html, function(err, data) {
+        if (err)
+        console.log(err);
+      else {
+        console.log("File written successfully\n");
+        // console.log("The written has the following contents:");
+        // console.log(fs.readFileSync("test.html", "utf8"));
+      }
+    })
 })
 
 module.exports = router;
