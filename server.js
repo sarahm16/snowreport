@@ -6,7 +6,7 @@ var compression = require('compression');
 const mongoose = require('mongoose');
 const keys = require('./config/keys');
 
-const locations = require('./routes/api/locations');
+const locations = require('./routes/api/locations.js');
 
 const app = express();
 app.use(compression());

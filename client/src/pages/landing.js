@@ -3,6 +3,9 @@ import axios from 'axios';
 
 import zipcodes from 'zipcodes';
 
+import path from 'path'
+
+import htmlDb from '../html';
 
 function Landing() {
     const [zipcode, setZipcode] = useState('')
@@ -39,51 +42,57 @@ function Landing() {
         //console.log(location)
     }
 
-    function generateReport() {
+    async function generateReport() {
         let body = ''
 
         axios.get('/api/locations/get')
             .then(res => {
                 //console.log(res)
                 res.data.forEach(location => {
-                    body = body.concat(`${location.name}    `).concat(`${location.zipcode     }`).concat(`<image src="https://forecast.weather.gov/meteograms/Plotter.php?lat=${location.latlong[0]}&lon=${location.latlong[1]}&wfo=OTX&zcode=WAZ036&gset=18&gdiff=8&unit=0&tinfo=PY8&ahour=0&pcmd=11011111111110000000000000000000000000000000000000000000000&lg=en&indu=1!1!1!&dd=&bw=&hrspan=48&pqpfhr=6&psnwhr=6">`)
-                    .concat('<br><hr>')
+                    body = body.concat(`${location.name}    `).concat(`${location.zipcode     }`).concat(`<img src="https://forecast.weather.gov/meteograms/Plotter.php?lat=${location.latlong[0]}&lon=${location.latlong[1]}&wfo=OTX&zcode=WAZ036&gset=18&gdiff=8&unit=0&tinfo=PY8&ahour=0&pcmd=11011111111110000000000000000000000000000000000000000000000&lg=en&indu=1!1!1!&dd=&bw=&hrspan=48&pqpfhr=6&psnwhr=6" />`)
+                    .concat('<br /><hr />')
                 })
-                //console.log(body)
 
-                const encodedToken = Buffer.from(`${process.env.REACT_APP_ANVIL_KEY}:`, 'ascii').toString('base64')
+                //const encodedToken = Buffer.from(`${process.env.REACT_APP_ANVIL_KEY}:`, 'ascii').toString('base64')
 
-                var data = {
-                    title: 'Weather Forecast',
+
+                const html = htmlDb
+
+                var test = {
                     data: {
-                      html: body
-                    }
+                        html
+                    },
                   }
 
-                data = JSON.stringify(data)
+                axios.post('/api/locations/generate', {x: test})
 
-                var config = {
-                    method: 'post',
-                    url: 'https://my-tb-cors.herokuapp.com/https://app.useanvil.com/api/v1/generate-pdf',
-                    headers: {
-                        Authorization: `Basic ${encodedToken}`,
-                        "Content-Type": "application/json"
-                    },
-                    data: data
-                  };
+                // console.log(data)
 
-                //console.log(JSON.stringify(body))
+                // var config = {
+                //     method: 'post',
+                //     url: 'https://my-tb-cors.herokuapp.com/https://app.useanvil.com/api/v1/generate-pdf',
+                //     headers: {
+                //         Authorization: `Basic ${encodedToken}`,
+                //         "Content-Type": "application/json"
+                //     },
+                //     data: data
+                //   };
 
-                axios(config)
-                .then(function (response) {
-                    console.log(JSON.stringify(response.data));
-                })
-                .catch(function (error) {
-                console.log(error);
-                });
+                // axios(config)
+                // .then(function (response) {
+                //     console.log(JSON.stringify(response.data));
+
+                //     let pdfData = {
+                //         data: JSON.stringify(response.data)
+                //     }
+
+                //     axios.post('/api/locations/generate',  pdfData)
+                    
+                // })
+                // .catch(function (error) {
+                //     console.log(error);
+                // });
             })
-
-        
     }
 
     return(
