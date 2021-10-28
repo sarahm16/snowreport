@@ -4,10 +4,10 @@ const path = require('path');
 const port = process.env.PORT || 8090;
 var compression = require('compression');
 const mongoose = require('mongoose');
-const keys = require('./config/keys');
+//const keys = require('./config/keys');
 const fs = require('fs')
 const Anvil = require('@anvilco/anvil')
-const apiKey = keys.anvilKey;
+//const apiKey = keys.anvilKey;
 
 const cron = require('node-cron');
 

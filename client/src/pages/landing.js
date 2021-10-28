@@ -1,12 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 
-// import zipcodes from 'zipcodes';
-
-// import path from 'path'
-
-// import htmlDb from '../html';
-
 function Landing() {
     const [zipcode, setZipcode] = useState('')
 
@@ -16,7 +10,7 @@ function Landing() {
     async function generateReport() {
         let body = ''
 
-        axios.post('/api/locations/add', {test: 'x'})
+        //axios.post('/api/locations/add', {test: 'x'})
     }
 
     return(
