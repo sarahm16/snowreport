@@ -9,12 +9,10 @@ import "@pnp/sp/folders";
 import html from './html';
 import html2 from './html2';
 
-import getCentralTime from './utils/centralTimeZone';
-
-import Landing from './pages/landing';
-import axios from 'axios';
-
 import getPdf from './utils/getPdf';
+import savePdf
+ from './utils/savePdf';
+import Landing from './pages/landing';
 
 //var toArrayBuffer = require('to-array-buffer')
 
@@ -26,27 +24,14 @@ const schedule = require('node-schedule');
 
 //const Anvil = require('@anvilco/anvil')
 
-
 function App() {
   useEffect(() => {
     console.log('use effect')
     getPdf(html)
-      .then(res => console.log(res))
-      //GETS DATE AND TIME IN CENTRAL TIME ZONE
-      let centralTime = getCentralTime();
-
-      // axios(config)
-      // .then(function (response) {
-      //   console.log(response.data)
-      //   axios.post(`Transblue/salestoops/_api/web/GetFolderByServerRelativeUrl('/Transblue/salestoops/Contracts/Snow Reports')/Files/add(url='${centralTime} A.pdf',overwrite=true)`, response.data, {
-      //     headers: {
-      //       "accept": "application/json;odata=verbose"
-      //     },
-      //   })
-      // })
-      // .catch(function (error) {
-      //   console.log(error);
-      // });
+      .then(res => {
+        console.log(res.data)
+        savePdf(res.data)
+      })
   }, [])
 
   return (
