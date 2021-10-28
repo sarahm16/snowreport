@@ -13,7 +13,7 @@ const axios = require('axios');
 
 router.post('/add', (req, res) => {
     console.log(req.body)
-    // Location.create(req.body)
+    //Location.create(req.body)
 })
 
 router.get('/get', (req,res) => {

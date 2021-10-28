@@ -13,6 +13,12 @@ import axios from 'axios';
 
 var toArrayBuffer = require('to-array-buffer')
 
+const schedule = require('node-schedule');
+
+// const job = schedule.scheduleJob('* * * * *', function(){
+//   console.log('The answer to life, the universe, and everything!');
+// });
+
 //const Anvil = require('@anvilco/anvil')
 
 class App extends Component {
@@ -30,7 +36,6 @@ class App extends Component {
   }
 
   async getCurrentUser() {
-
     var data = JSON.stringify({
       data: {
           html
@@ -52,26 +57,30 @@ class App extends Component {
           responseType: 'arraybuffer'
       };
 
-      // axios(config)
-      // .then(function (response) {
-      //   console.log(response.data)
-      //   // //console.log(JSON.stringify(response.data));
-      //   // const blob = new Blob([response.data], { type: 'application/pdf' });
-      //   // const url = URL.createObjectURL(blob);
-      //   // window.open(url, '_blank');
+      axios(config)
+      .then(function (response) {
+        console.log(response.data)
+        // //console.log(JSON.stringify(response.data));
+        // const blob = new Blob([response.data], { type: 'application/pdf' });
+        // const url = URL.createObjectURL(blob);
+        // window.open(url, '_blank');
 
-      //   axios.post("Transblue/salestoops/_api/web/GetFolderByServerRelativeUrl('/Transblue/salestoops/Contracts/Snow Reports')/Files/add(url='output3.pdf',overwrite=true)", response.data, {
-      //     headers: {
-      //       "accept": "application/json;odata=verbose"
-      //     },
-      //   })
-      // })
-      // .catch(function (error) {
-      //   console.log(error);
-      // });
+        axios.post("Transblue/salestoops/_api/web/GetFolderByServerRelativeUrl('/Transblue/salestoops/Contracts/Snow Reports')/Files/add(url='output2.pdf',overwrite=true)", response.data, {
+          headers: {
+            "accept": "application/json;odata=verbose"
+          },
+        })
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
  };
 
   componentDidMount() {
+      // axios.get('https://my-tb-cors.herokuapp.com/https://login.microsoftonline.com/seattlemaintenancesolutions-my/oauth2/v2.0/authorize?', {
+      //   client_id: 'c52c168d-de54-4e14-827f-317244221002'
+      // }).then(res => console.log(res))    
+
     this.getCurrentUser()
   }
 

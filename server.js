@@ -8,7 +8,7 @@ const keys = require('./config/keys');
 const fs = require('fs')
 const Anvil = require('@anvilco/anvil')
 const apiKey = keys.anvilKey;
-const proxy = require('http-proxy-middleware');
+
 const cron = require('node-cron');
 
 const schedule = require('node-schedule');
@@ -23,11 +23,9 @@ const schedule = require('node-schedule');
 
 const locations = require('./routes/api/locations.js');
 
-const pdf = require('./routes/api/pdf')
-
 const app = express();
 
-cron.schedule('*/10 * * * *', () => {console.log("Task is running every minute " + new Date())});
+//cron.schedule('*/10 * * * *', () => {console.log("Task is running every minute " + new Date())});
 
 // MIDDLEWARE
 app.use(compression());
@@ -56,9 +54,7 @@ if(process.env.NODE_ENV === "production")
   app.use(express.static('client/build'));
 }
 
-app.use('/api/locations', locations);
-app.use('/api/pdf', pdf);
-
+app.use('/api/locations', locations)
 // /app.use(express.static('client/build'));
 
 app.get('*', function (req, res) {

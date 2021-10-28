@@ -45,7 +45,7 @@ function Landing() {
     async function generateReport() {
         let body = ''
 
-        axios.get('/api/pdf/create', {test: 'blah'})
+        axios.post('/api/locations/add', {test: 'testing'})
 
         // axios.get('/api/locations/get')
         //     .then(res => {
