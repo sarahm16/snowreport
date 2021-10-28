@@ -45,28 +45,30 @@ function Landing() {
     async function generateReport() {
         let body = ''
 
-        axios.get('/api/locations/get')
-            .then(res => {
-                //console.log(res)
-                res.data.forEach(location => {
-                    body = body.concat(`${location.name}    `).concat(`${location.zipcode     }`).concat(`<img src="https://forecast.weather.gov/meteograms/Plotter.php?lat=${location.latlong[0]}&lon=${location.latlong[1]}&wfo=OTX&zcode=WAZ036&gset=18&gdiff=8&unit=0&tinfo=PY8&ahour=0&pcmd=11011111111110000000000000000000000000000000000000000000000&lg=en&indu=1!1!1!&dd=&bw=&hrspan=48&pqpfhr=6&psnwhr=6" />`)
-                    .concat('<br /><hr />')
-                })
+        axios.get('/api/pdf/create', {test: 'blah'})
 
-                //const encodedToken = Buffer.from(`${process.env.REACT_APP_ANVIL_KEY}:`, 'ascii').toString('base64')
+        // axios.get('/api/locations/get')
+        //     .then(res => {
+        //         //console.log(res)
+        //         res.data.forEach(location => {
+        //             body = body.concat(`${location.name}    `).concat(`${location.zipcode     }`).concat(`<img src="https://forecast.weather.gov/meteograms/Plotter.php?lat=${location.latlong[0]}&lon=${location.latlong[1]}&wfo=OTX&zcode=WAZ036&gset=18&gdiff=8&unit=0&tinfo=PY8&ahour=0&pcmd=11011111111110000000000000000000000000000000000000000000000&lg=en&indu=1!1!1!&dd=&bw=&hrspan=48&pqpfhr=6&psnwhr=6" />`)
+        //             .concat('<br /><hr />')
+        //         })
+
+        //         //const encodedToken = Buffer.from(`${process.env.REACT_APP_ANVIL_KEY}:`, 'ascii').toString('base64')
 
 
-                const html = htmlDb
+        //         const html = htmlDb
 
-                var test = {
-                    data: {
-                        html
-                    },
-                  }
+        //         var test = {
+        //             data: {
+        //                 html
+        //             },
+        //           }
 
-                axios.post('/api/locations/generate', {x: test})
+        //         axios.post('/api/locations/generate', {x: test})
 
-            })
+        //     })
     }
 
     return(
