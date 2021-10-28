@@ -17,15 +17,10 @@ const schedule = require('node-schedule');
 function App() {
   useEffect(() => {
     console.log('use effect')
-    // getPdf(html)
-    //   .then(res => {
-    //     console.log(res.data)
-    //     savePdf(res.data)
-    //   })
-
     const getAndSavePdf = async () => {
         const pdfData = await getPdf(html)
         console.log(pdfData)
+        savePdf(pdfData)
     } 
     getAndSavePdf()
 
