@@ -1,16 +1,14 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 
-import zipcodes from 'zipcodes';
+// import zipcodes from 'zipcodes';
 
-import path from 'path'
+// import path from 'path'
 
-import htmlDb from '../html';
+// import htmlDb from '../html';
 
 function Landing() {
     const [zipcode, setZipcode] = useState('')
-
-    //console.log(Array.isArray(zips))
 
     function addLocation() {
     }
