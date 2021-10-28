@@ -10,20 +10,23 @@ import Landing from './pages/landing';
 
 const schedule = require('node-schedule');
 
-// const job = schedule.scheduleJob('* * * * *', function(){
-//   console.log('The answer to life, the universe, and everything!');
-// });
-
 function App() {
   useEffect(() => {
     console.log('use effect')
-    const getAndSavePdf = async () => {
-        const pdfData = await getPdf(html)
+    const getAndSavePdf = async (htmlData, version) => {
+        const pdfData = await getPdf(htmlData)
         console.log(pdfData)
-        savePdf(pdfData)
+        savePdf(pdfData, version)
     } 
-    getAndSavePdf()
+    //getAndSavePdf()
 
+    getAndSavePdf(html, 'A')
+    getAndSavePdf(html2, 'B')
+
+    // const job = schedule.scheduleJob('*/10 * * * *', function(){
+    //   console.log('Generating PDF');
+    //   getAndSavePdf(html)
+    // });
   }, [])
 
   return (
