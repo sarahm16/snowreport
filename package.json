@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "client": "cd client && npm run start",
+    "client": "cd client && npm run startServers",
     "start": "node server.js",
     "server": "node server.js",
     "build": "cd client && npm run build",
@@ -16,13 +16,20 @@
   "license": "ISC",
   "dependencies": {
     "@anvilco/anvil": "^2.9.1",
+    "@azure/msal-browser": "^2.18.0",
+    "@azure/msal-react": "^1.1.0",
+    "@pnp/sp": "^2.10.0",
     "axios": "^0.24.0",
     "compression": "^1.7.4",
     "concurrently": "^6.3.0",
     "express": "^4.17.1",
     "express-favicon": "^2.0.1",
     "mongoose": "^6.0.12",
+    "node-cron": "^3.0.0",
+    "node-schedule": "^2.0.0",
     "path": "^0.12.7",
+    "sp-rest-proxy": "^3.1.1",
+    "to-array-buffer": "^3.2.0",
     "zipcodes": "^8.0.0"
   }
 }

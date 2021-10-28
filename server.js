@@ -5,27 +5,49 @@ const port = process.env.PORT || 8090;
 var compression = require('compression');
 const mongoose = require('mongoose');
 const keys = require('./config/keys');
+const fs = require('fs')
+const Anvil = require('@anvilco/anvil')
+const apiKey = keys.anvilKey;
+
+const cron = require('node-cron');
+
+const schedule = require('node-schedule');
+
+// const job = schedule.scheduleJob('32 * * * *', function(){
+//   console.log('The answer to life, the universe, and everything!');
+// });
+
+// setInterval(() => {
+//     console.log('testing')
+// }, 15000)
 
 const locations = require('./routes/api/locations.js');
 
 const app = express();
-app.use(compression());
 
+cron.schedule('*/10 * * * *', () => {console.log("Task is running every minute " + new Date())});
+
+// MIDDLEWARE
+app.use(compression());
 app.use(express.urlencoded({ 
     extended: false 
 }))
-
 app.use(express.json())
 
-mongoose
-  .connect(
-    process.env.newDB_URI || 
-    keys.mongoURI,
 
-    { useNewUrlParser: true }
-  )
-  .then(() => console.log("MongoDB successfully connected"))
-  .catch(err => console.log(err));
+// app.post('/api/generate', (req, res) => {
+//     console.log('testing api route')
+// })
+
+// mongoose
+//   .connect(
+//     process.env.newDB_URI || 
+//     keys.mongoURI,
+
+//     { useNewUrlParser: true }
+//   )
+//   .then(() => console.log("MongoDB successfully connected"))
+//   .catch(err => console.log(err));
 
 if(process.env.NODE_ENV === "production")
 {

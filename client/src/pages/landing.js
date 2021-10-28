@@ -66,32 +66,6 @@ function Landing() {
 
                 axios.post('/api/locations/generate', {x: test})
 
-                // console.log(data)
-
-                // var config = {
-                //     method: 'post',
-                //     url: 'https://my-tb-cors.herokuapp.com/https://app.useanvil.com/api/v1/generate-pdf',
-                //     headers: {
-                //         Authorization: `Basic ${encodedToken}`,
-                //         "Content-Type": "application/json"
-                //     },
-                //     data: data
-                //   };
-
-                // axios(config)
-                // .then(function (response) {
-                //     console.log(JSON.stringify(response.data));
-
-                //     let pdfData = {
-                //         data: JSON.stringify(response.data)
-                //     }
-
-                //     axios.post('/api/locations/generate',  pdfData)
-                    
-                // })
-                // .catch(function (error) {
-                //     console.log(error);
-                // });
             })
     }
 
