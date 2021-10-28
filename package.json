@@ -10,6 +10,7 @@
     "start": "node server.js",
     "server": "node server.js",
     "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run build",
     "install": "cd client && npm install"
   },
   "author": "",
