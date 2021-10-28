@@ -11,7 +11,22 @@ function savePdf(data, version) {
         "accept": "application/json;odata=verbose"
         }
     })
-    .catch(err => console.log(err))
+    .catch(err => {
+        console.log(err)
+        let data = JSON.stringify({  
+            'properties': {'__metadata': { 'type': 'SP.Utilities.EmailProperties' },  
+            'From': 'no-reply@transblue.org',  
+            'To': { 'results': ['carters@transblue.org', 'wescottj@transblue.org'] },  
+            'Body': err,  
+            'Subject': 'Snow Report Error - Saving PDF to Sharepoint' }
+        })      
+        axios.post('/_api/SP.Utilities.Utility.SendEmail', data, {
+          headers: {
+            "accept": "application/json;odata=verbose",
+            "Content-Type": "application/json;odata=verbose"
+          }
+        })
+    })
 }
 
 export default savePdf;
