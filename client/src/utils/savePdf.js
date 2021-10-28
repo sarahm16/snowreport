@@ -1,5 +1,6 @@
 import axios from 'axios';
 import getCentralTime from './centralTimeZone';
+import sendSuccessEmail from './successEmail';
 
 function savePdf(data, version) {
 
@@ -11,8 +12,12 @@ function savePdf(data, version) {
         "accept": "application/json;odata=verbose"
         }
     })
+    .then(res => {
+        sendSuccessEmail(centralTime)
+    })
     .catch(err => {
         console.log(err)
+        //SEND EMAIL TO ME AND JIM IF SAVING PDF FAILS
         let data = JSON.stringify({  
             'properties': {'__metadata': { 'type': 'SP.Utilities.EmailProperties' },  
             'From': 'no-reply@transblue.org',  

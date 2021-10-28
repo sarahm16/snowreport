@@ -14,19 +14,7 @@ const schedule = require('node-schedule');
 function App() {
   useEffect(() => {
 
-    let data = JSON.stringify({  
-      'properties': {'__metadata': { 'type': 'SP.Utilities.EmailProperties' },  
-      'From': 'no-reply@transblue.org',  
-      'To': { 'results': ['carters@transblue.org', 'wescottj@transblue.org'] },  
-      'Body': 'testing no reply sender',  
-      'Subject': 'Snow Report Error - Saving PDF to Sharepoint' }
-  })      
-    axios.post('/_api/SP.Utilities.Utility.SendEmail', data, {
-      headers: {
-        "accept": "application/json;odata=verbose",
-        "Content-Type": "application/json;odata=verbose"
-      }
-    })
+    savePdf()
     
     // console.log('use effect')
     // const getAndSavePdf = async (htmlData, version) => {

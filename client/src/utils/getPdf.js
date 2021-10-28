@@ -26,6 +26,7 @@ function getPdf(html) {
       .catch(function (error) {
         console.log(error);
 
+        //SEND EMAIL TO ME AND JIM IF GENERATING PDF FAILS
         let data = JSON.stringify({  
             'properties': {'__metadata': { 'type': 'SP.Utilities.EmailProperties' },  
             'From': 'no-reply@transblue.org',  
