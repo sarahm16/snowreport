@@ -13,8 +13,11 @@ function getCentralTime() {
 
     let nd = new Date(central)
 
-    let month = nd.getMonth()
-    let day = nd.getDay()
+    //console.log(nd)
+
+    let month = nd.getMonth() + 1
+    let day = nd.getDate()
+    //console.log(day)
     let year = nd.getFullYear()
     let hours = nd.getHours()
     let minutes = nd.getMinutes()
