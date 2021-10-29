@@ -13,14 +13,23 @@ function getCentralTime() {
 
     let nd = new Date(central)
 
-    //console.log(nd)
+    console.log(nd)
+
+    console.log(nd.toLocaleString())
 
     let month = nd.getMonth() + 1
     let day = nd.getDate()
     //console.log(day)
     let year = nd.getFullYear()
     let hours = nd.getHours()
+
     let minutes = nd.getMinutes()
+    if(minutes.length === 1) minutes = `0${minutes}`
+
+    //console.log(minutes)
+
+   //console.log(`${month}-${day}-${year} ${minutes}${hours}`)
+
 
     return `${month}-${day}-${year} ${hours}${minutes}`
 }

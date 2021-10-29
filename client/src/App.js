@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import html from './html';
 import html2 from './html2';
 
@@ -8,33 +8,42 @@ import getPdf from './utils/getPdf';
 import savePdf from './utils/savePdf';
 import Landing from './pages/landing';
 import axios from 'axios';
+import getCentralTime from './utils/centralTimeZone';
 
 const schedule = require('node-schedule');
 
 function App() {
-  useEffect(() => {
 
+  const [num, setNum] = useState(0)
+
+  // function click() {
+  //   getPdf(html).then(res => savePdf(res.data, 'A'))
+  // }
+
+  useEffect(() => {
     console.log('useeffect')
     const getAndSavePdf = async (htmlData, version) => {
       const pdfData = await getPdf(htmlData)
       console.log(pdfData)
       savePdf(pdfData, version)
-    } 
+    }
 
-    //RUN CODE TO CREATE TWO INITIAL PDFS
-    getAndSavePdf(html, 'A')
-    getAndSavePdf(html2, 'B')
+   //getCentralTime()
 
-    //SCHEDULE PDF GENERATION EVERY 6 HOURS AFTER INITIAL GENERATION
-    const job = schedule.scheduleJob('0 */6 * * *', function() {
-      console.log('Testing node schedule after work, last time event occured: ' + new Date())
-        getAndSavePdf(html, 'A')
-        getAndSavePdf(html2, 'B')
+    // getPdf(html).then(res => savePdf(res.data, 'A'))
+    // getPdf(html2).then(res => savePdf(res.data, 'B'))
+
+    //SCHEDULE PDF GENERATION EVERY 10 MINUTES AFTER INITIAL GENERATION
+    const job = schedule.scheduleJob('*/30 * * * *', function() {
+      console.log('Generating Pdf, last time event occured: ' + new Date())
+      getPdf(html).then(res => savePdf(res.data, 'A'))
+      getPdf(html2).then(res => savePdf(res.data, 'B'))
     })
   }, [])
 
   return (
-    <Landing />
+    <button onClick={() => getPdf(html)}>TEST</button>
+    //<Landing />
 );
 }
 

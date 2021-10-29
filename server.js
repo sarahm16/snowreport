@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 //const keys = require('./config/keys');
 const fs = require('fs')
 const Anvil = require('@anvilco/anvil')
+const cors = require('cors');
 //const apiKey = keys.anvilKey;
 
 const cron = require('node-cron');
@@ -33,6 +34,7 @@ app.use(express.urlencoded({
     extended: false 
 }))
 app.use(express.json())
+// app.use(cors())
 
 
 // app.post('/api/generate', (req, res) => {
