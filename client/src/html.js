@@ -250,7 +250,13 @@ OR	Hood River	97031  <br /><img src="https://forecast.weather.gov/meteograms/Plo
 
 OR	Saint Helens	97051  <br /><img src="https://forecast.weather.gov/meteograms/Plotter.php?lat=45.8597&lon=-122.8132&wfo=PQR&zcode=ORZ005&gset=18&gdiff=3&unit=0&tinfo=PY8&ahour=0&pcmd=11011111111110000000000000000000000000000000000000000000000&lg=en&indu=1!1!1!&dd=&bw=&hrspan=48&pqpfhr=6&psnwhr=6"/> <br /><hr />
 
+OR	Wilsonville 	97070  <br /><img src="https://forecast.weather.gov/meteograms/Plotter.php?lat=45.3069&lon=-122.7645&wfo=PQR&zcode=ORZ006&gset=18&gdiff=3&unit=0&tinfo=PY8&ahour=0&pcmd=11011111111110000000000000000000000000000000000000000000000&lg=en&indu=1!1!1!&dd=&bw=&hrspan=48&pqpfhr=6&psnwhr=6"/> <br /><hr />
 
+OR	Warrenton	97146  <br /><img src="https://forecast.weather.gov/meteograms/Plotter.php?lat=46.1637&lon=-123.9295&wfo=PQR&zcode=ORZ001&gset=18&gdiff=3&unit=0&tinfo=PY8&ahour=0&pcmd=11011111111110000000000000000000000000000000000000000000000&lg=en&indu=1!1!1!&dd=&bw=&hrspan=48&pqpfhr=6&psnwhr=6"/> <br /><hr />
+
+OR	Portland	97217  <br /><img src="https://forecast.weather.gov/meteograms/Plotter.php?lat=45.5601&lon=-122.68&wfo=PQR&zcode=ORZ006&gset=18&gdiff=3&unit=0&tinfo=PY8&ahour=0&pcmd=11011111111110000000000000000000000000000000000000000000000&lg=en&indu=1!1!1!&dd=&bw=&hrspan=48&pqpfhr=6&psnwhr=6"/> <br /><hr />
+
+OR	Portland	97225  <br /><img src="https://forecast.weather.gov/meteograms/Plotter.php?lat=45.492&lon=-122.7659&wfo=PQR&zcode=ORZ006&gset=18&gdiff=3&unit=0&tinfo=PY8&ahour=0&pcmd=11011111111110000000000000000000000000000000000000000000000&lg=en&indu=1!1!1!&dd=&bw=&hrspan=48&pqpfhr=6&psnwhr=6"/> <br /><hr />
 `
 
 export default html;

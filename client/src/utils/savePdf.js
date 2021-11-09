@@ -14,10 +14,10 @@ function savePdf(data, version) {
         "accept": "application/json;odata=verbose"
         }
     })
-    .then(res => {
-        console.log(res)
-        //sendSuccessEmail(centralTime)
-    })
+    // .then(res => {
+    //     console.log(res)
+    //     //sendSuccessEmail(centralTime)
+    // })
     .catch(err => {
         console.log(err)
         //SEND EMAIL TO ME AND JIM IF SAVING PDF FAILS
