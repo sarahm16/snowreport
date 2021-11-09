@@ -16,7 +16,7 @@ function savePdf(data, version) {
     })
     .then(res => {
         console.log(res)
-        sendSuccessEmail(centralTime)
+        //sendSuccessEmail(centralTime)
     })
     .catch(err => {
         console.log(err)

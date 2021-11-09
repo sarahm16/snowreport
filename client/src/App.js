@@ -11,15 +11,24 @@ function App() {
   useEffect(() => {     
     console.log('useeffect')
 
+    //getPdf(html)
+
     // getPdf(html).then(res => savePdf(res.data, 'A'))
     //   .then(() => getPdf(html2).then(res => savePdf(res.data, 'B')))
 
 
     //SCHEDULE PDF GENERATION EVERY 10 MINUTES AFTER INITIAL GENERATION
-    const job = schedule.scheduleJob('0 */6 * * *', function() {
-      console.log('Generating Pdf, last time event occured: ' + new Date())
-      getPdf(html).then(res => savePdf(res.data, 'A'))
-      .then(() => getPdf(html2).then(res => savePdf(res.data, 'B')))
+    const job = schedule.scheduleJob('43 * * * *', function() {
+      console.log('Generating A Pdf, last time event occured: ' + new Date())
+      getPdf(html).then(res => {
+        //console.log(res.data)
+        savePdf(res.data, 'A')
+      })
+    })
+
+    const job2 = schedule.scheduleJob('45 * * * *', function() {
+      console.log('Generating B pdf')
+        getPdf(html2).then(res => savePdf(res.data, 'B'))
     })
   }, [])
 
