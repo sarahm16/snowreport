@@ -23,7 +23,6 @@ module.exports = function (app) {
             changeOrigin: true
         })
     )
-
     app.use(
         proxy('/_api', {
             target: "http://localhost:8081",
