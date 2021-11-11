@@ -13,6 +13,11 @@ module.exports = function (app) {
         })
     )
     app.use(
+        proxy('/pdf', {
+            target: 'http://localhost:8090'
+        })
+    )
+    app.use(
         proxy('/Transblue', {
             target: "http://localhost:8081",
             changeOrigin: true

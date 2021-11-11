@@ -3,7 +3,6 @@ import getCentralTime from './centralTimeZone';
 import sendSuccessEmail from './successEmail';
 
 function savePdf(data, version) {
-
     console.log('saving pdf')
 
     //GETS DATE AND TIME IN CENTRAL TIME ZONE
@@ -19,6 +18,7 @@ function savePdf(data, version) {
     //     //sendSuccessEmail(centralTime)
     // })
     .catch(err => {
+        console.log('Error saving' + version)
         console.log(err)
         //SEND EMAIL TO ME AND JIM IF SAVING PDF FAILS
         let data = JSON.stringify({  

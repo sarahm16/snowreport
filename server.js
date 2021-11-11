@@ -23,6 +23,7 @@ const schedule = require('node-schedule');
 // }, 15000)
 
 const locations = require('./routes/api/locations.js');
+const pdf = require('./routes/pdf.js')
 
 const app = express();
 
@@ -58,6 +59,7 @@ if(process.env.NODE_ENV === "production")
 }
 
 app.use('/api/locations', locations)
+app.use('/pdf', pdf);
 // /app.use(express.static('client/build'));
 
 app.get('*', function (req, res) {
