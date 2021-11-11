@@ -12,21 +12,22 @@ const schedule = require('node-schedule');
 function App() {
   const [index, setIndex] = useState(0)
 
-  const job4 = schedule.scheduleJob('*/15 * * * *', function() {
-    setIndex(index + 1)
-  })
+  // const job4 = schedule.scheduleJob('0 */6 * * *', function() {
+  //   setIndex(index + 1)
+  // })
 
   useEffect(() => {
     console.log('useeffect')
-    console.log(index)
+    //console.log(index)
 
-    axios.post('/pdf/get', {html: html})
-      .then(res => {
+    const job4 = schedule.scheduleJob('0 */6 * * *', function() {
+      axios.post('/pdf/get', {html: html})
+        .then(res => {
 
-        var arrayBuffer = new Uint8Array(res.data.data).buffer
-        //console.log(ab)
-        savePdf(arrayBuffer, 'A')
-      })
+          var arrayBuffer = new Uint8Array(res.data.data).buffer
+          //console.log(ab)
+          savePdf(arrayBuffer, 'A')
+        })
 
       axios.post('/pdf/get', {html: html2})
       .then(res => {
@@ -43,6 +44,7 @@ function App() {
         //console.log(ab)
         savePdf(arrayBuffer, 'C')
       })
+    })
 
     //SCHEDULE PDF GENERATION EVERY 10 MINUTES AFTER INITIAL GENERATION
     // const job = schedule.scheduleJob('13 */1 * * *', function() {
@@ -79,7 +81,7 @@ function App() {
     //   })
     // })
 
-  }, [index])
+  }, [])
 
   return (
     <div></div>
